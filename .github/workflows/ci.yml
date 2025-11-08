@@ -12,34 +12,25 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x, 18.x]
-
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-
-
-      - name: Remove preinstalled Yarn 1.x
-        run: |
-          sudo rm -f /usr/local/bin/yarn
-          sudo rm -f /usr/local/bin/yarnpkg
-
-      - name: Enable Corepack and Yarn 4.6.0
-        run: |
-          corepack enable
-          corepack prepare yarn@4.6.0 --activate
-          yarn -v   # verify Yarn 4.6.0 is active
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Lint code
-        run: yarn lint
-
-      - name: Run tests
-        run: yarn test
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+        
+    - name: Enable Corepack
+      run: corepack enable
+      
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Lint code
+      run: yarn lint
+      
+    - name: Run tests
+      run: yarn test
