@@ -1,0 +1,14 @@
+// {
+//   "name": "Poch-Sreypov-lab1",
+//   "packageManager": "yarn@4.6.0",
+//   "dependencies": {
+//     "expre": "^0.1.1",
+//     "express": "^5.1.0"
+//   },
+//   "devDependencies": {
+//     "chai": "^6.2.0",
+//     "eslint": "^9.39.1",
+//     "mocha": "^11.7.5",
+//     "supertest": "^7.1.4"
+//   }
+// }
