@@ -22,9 +22,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          check-latest: true  
 
-      - name: Remove global Yarn 1.x (force Corepack to work)
+
+      - name: Remove preinstalled Yarn 1.x
         run: |
           sudo rm -f /usr/local/bin/yarn
           sudo rm -f /usr/local/bin/yarnpkg
