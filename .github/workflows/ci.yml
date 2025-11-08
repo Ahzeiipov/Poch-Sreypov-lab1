@@ -23,10 +23,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
 
-      - name: Enable Corepack and Yarn 4.6.0
+
+      - name: Enable Corepack and use Yarn 4.6.0
+        shell: bash
         run: |
           corepack enable
           corepack prepare yarn@4.6.0 --activate
+          yarn -v   # Optional: verify it’s now 4.6.0
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
