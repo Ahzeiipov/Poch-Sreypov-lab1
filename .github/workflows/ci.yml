@@ -22,14 +22,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+          check-latest: true  
 
+      - name: Remove global Yarn 1.x (force Corepack to work)
+        run: |
+          sudo rm -f /usr/local/bin/yarn
+          sudo rm -f /usr/local/bin/yarnpkg
 
-      - name: Enable Corepack and use Yarn 4.6.0
-        shell: bash
+      - name: Enable Corepack and Yarn 4.6.0
         run: |
           corepack enable
           corepack prepare yarn@4.6.0 --activate
-          yarn -v   # Optional: verify it’s now 4.6.0
+          yarn -v   # verify Yarn 4.6.0 is active
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
