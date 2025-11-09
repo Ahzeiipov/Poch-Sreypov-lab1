@@ -5,16 +5,18 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha --exit",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "coverage": "nyc --reporter=html --reporter=text mocha --exit"
   },
   "dependencies": {
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
-    "eslint": "^9.39.1",
     "mocha": "^10.2.0",
-    "supertest": "^6.3.3"
+    "chai": "^4.3.7",
+    "supertest": "^6.3.3",
+    "eslint": "^9.39.1",
+    "nyc": "^17.1.0"
   },
   "packageManager": "yarn@4.6.0+sha224.acd0786f07ffc6c933940eb65fc1d627131ddf5455bddcc295dc90fd"
 }
