@@ -17,6 +17,5 @@
     "supertest": "^6.3.3",
     "eslint": "^9.39.1",
     "nyc": "^17.1.0"
-  },
-  "packageManager": "yarn@4.6.0+sha224.acd0786f07ffc6c933940eb65fc1d627131ddf5455bddcc295dc90fd"
+  }
 }

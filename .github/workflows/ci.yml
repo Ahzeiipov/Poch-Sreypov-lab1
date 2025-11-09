@@ -1,4 +1,4 @@
-name: Node.js CI/CD (Yarn)
+name: Node.js CI/CD (npm)
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
     
     steps:
     - name: Checkout code
@@ -21,16 +21,16 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'npm'
         
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: npm ci
       
     - name: Lint code
-      run: yarn lint
+      run: npm run lint
       
     - name: Run tests with coverage
-      run: yarn coverage
+      run: npm run coverage
       
     - name: Upload coverage reports
       uses: actions/upload-artifact@v4
@@ -50,6 +50,5 @@ jobs:
       
     - name: Deploy to Render
       run: |
-        echo "Deployment would happen here automatically after tests pass"
-        echo "Since we connected Render to GitHub, it auto-deploys on main branch pushes"
+        echo "Deployment triggered automatically after tests pass"
         echo "Your app should be live at: https://your-app-name.onrender.com"
