@@ -1,4 +1,4 @@
-name: Node.js CI (Yarn)
+name: Node.js CI/CD (Yarn)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,3 +38,18 @@ jobs:
         name: coverage-report-${{ matrix.node-version }}
         path: coverage/
         retention-days: 30
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to Render
+      run: |
+        echo "Deployment would happen here automatically after tests pass"
+        echo "Since we connected Render to GitHub, it auto-deploys on main branch pushes"
+        echo "Your app should be live at: https://your-app-name.onrender.com"
