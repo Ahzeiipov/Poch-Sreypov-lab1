@@ -1,4 +1,4 @@
-name: Node.js CI/CD (Yarn)
+name: Node.js CI/CD
 
 on:
   push:
@@ -21,19 +21,16 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'npm'
         
-    - name: Enable Corepack
-      run: corepack enable
-      
     - name: Install dependencies
-      run: yarn install --immutable
+      run: npm ci
       
     - name: Lint code
-      run: yarn lint
+      run: npm run lint
       
     - name: Run tests with coverage
-      run: yarn coverage
+      run: npm run coverage
       
     - name: Upload coverage reports
       uses: actions/upload-artifact@v4
@@ -51,7 +48,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Deploy to Render
+    - name: Deploy notification
       run: |
-        echo "Deployment triggered automatically after tests pass"
-        echo "Your app should be live at: https://your-app-name.onrender.com"
+        echo "All tests passed! Ready for deployment."
+        echo "Render should auto-deploy from main branch"
