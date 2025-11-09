@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
     
     steps:
     - name: Checkout code
@@ -23,8 +23,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         
+    - name: Enable Corepack
+      run: corepack enable
+      
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: yarn install --immutable
       
     - name: Lint code
       run: yarn lint
@@ -50,6 +53,5 @@ jobs:
       
     - name: Deploy to Render
       run: |
-        echo "Deployment would happen here automatically after tests pass"
-        echo "Since we connected Render to GitHub, it auto-deploys on main branch pushes"
+        echo "Deployment triggered automatically after tests pass"
         echo "Your app should be live at: https://your-app-name.onrender.com"
