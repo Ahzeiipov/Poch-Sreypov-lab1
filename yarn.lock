@@ -181,7 +181,6 @@ __metadata:
   dependencies:
     chai: "npm:^6.2.0"
     eslint: "npm:^9.39.1"
-    expre: "npm:^0.1.1"
     express: "npm:^5.1.0"
     mocha: "npm:^11.7.5"
     supertest: "npm:^7.1.4"
@@ -787,13 +786,6 @@ __metadata:
   version: 1.8.1
   resolution: "etag@npm:1.8.1"
   checksum: 10c0/12be11ef62fb9817314d790089a0a49fae4e1b50594135dcb8076312b7d7e470884b5100d249b28c18581b7fd52f8b485689ffae22a11ed9ec17377a33a08f84
-  languageName: node
-  linkType: hard
-
-"expre@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "expre@npm:0.1.1"
-  checksum: 10c0/b1253ea44872359f2c70029babaac9ddfe117a6a41fc44183b9ee41bde3dcba4e2f4371ed56d8edfa3dc83aa3abb72e9485678abdc1b1baebb5357d8f63cedcd
   languageName: node
   linkType: hard
 
