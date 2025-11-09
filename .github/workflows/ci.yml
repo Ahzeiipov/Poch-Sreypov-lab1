@@ -1,39 +1,54 @@
-name: Node.js CI (Yarn)
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
-  build-and-test:
+  test-and-coverage:
+    name: Test, Lint, and Coverage
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
-
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
 
-      - name: Enable Corepack
-        run: corepack enable
+      - name: Install Dependencies
+        run: yarn install
 
-      - name: Prepare Yarn version
-        run: corepack prepare yarn@4.6.0 --activate
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Run lint
+      - name: Run Lint
         run: yarn lint
 
-      - name: Run tests
+      - name: Run Tests
         run: yarn test
+
+      - name: Run Coverage
+        run: yarn coverage
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage
+
+  deploy:
+    name: Deploy to Render
+    needs: test-and-coverage
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Render
+        run: |
+          curl -X POST \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+          https://api.render.com/deploy/srv-xxxxxxxx

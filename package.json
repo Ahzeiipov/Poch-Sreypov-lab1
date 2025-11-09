@@ -1,18 +1,20 @@
 {
   "name": "Poch-Sreypov-lab1",
-  "packageManager": "yarn@4.6.0",
+  "version": "1.0.0",
+  "main": "app.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha --exit",
     "lint": "eslint . --ext .js"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.18.2"
   },
   "devDependencies": {
-    "chai": "^6.2.0",
+    "chai": "^4.3.7",
     "eslint": "^9.39.1",
-    "mocha": "^11.7.5",
-    "supertest": "^7.1.4"
-  }
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
+  },
+  "packageManager": "yarn@4.6.0+sha224.acd0786f07ffc6c933940eb65fc1d627131ddf5455bddcc295dc90fd"
 }
